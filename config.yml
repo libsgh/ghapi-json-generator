@@ -3,6 +3,4 @@
 ########################################
 
 links:
-  ######## Stellar ########
-  # Stellar 最近更新日志（10条记录）
-  - https://api.github.com/repos/Bush2021/chrome_plus/releases?per_page=10
+  - https://api.github.com/repos/Bush2021/chrome_plus/releases/last
