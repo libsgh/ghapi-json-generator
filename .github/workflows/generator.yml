@@ -9,15 +9,17 @@ on:
     types: [started]
   schedule:
     - cron: '0 * * * *'
+  repository_dispatch:
+    types: [ build_downstream ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
     - name: Set up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v7
       with:
         python-version: '3.13'
     - name: Install requirements
@@ -29,11 +31,11 @@ jobs:
       run: |
         python generator/v2.py
     - name: Commit & Push
-      uses: action-x/commit@v2.9
+      uses: actions-x/commit@v6
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        push-branch: 'output'
-        commit-message: 'Generate Json'
-        force-push: 'true'
+        token: ${{ secrets.GITHUB_TOKEN }}
+        branch: 'output'
+        message: 'Generate Json'
+        force: true
         name: github-actions[bot]
         email: github-actions[bot]@noreply.github.com
